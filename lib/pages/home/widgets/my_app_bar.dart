@@ -9,15 +9,14 @@ class MyAppBar extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).padding.top,
         ),
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.height * .15,
-          //color: Color.fromARGB(103, 41, 181, 246),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.network(
                 'https://3.bp.blogspot.com/-18875iR4Xs0/V6_43NnrV-I/AAAAAAAAp2k/n2lHRQARYb8sqKi-dQQD8ywjdqKbLWNoACLcB/s1600/pokebola.png',
-                height: 50,
+                height: 60,
               ),
               const SizedBox(
                 width: 10,

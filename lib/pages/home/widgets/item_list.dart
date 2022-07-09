@@ -1,8 +1,19 @@
+// ignore_for_file: constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/pages/home/model/pokemon.dart';
+import 'package:pokedex_flutter/pages/home/widgets/type_label.dart';
 
-class ListPokemons extends StatelessWidget {
-  const ListPokemons({Key? key}) : super(key: key);
+class ListPokemonsWidget extends StatefulWidget {
+  final List<Pokemon> listPokemons = [];
+  ListPokemonsWidget({Key? key, required listPokemons}) : super(key: key);
 
+  @override
+  State<StatefulWidget> createState() {
+    return _ListPokemonsWidgetState();
+  }
+}
+
+class _ListPokemonsWidgetState extends State<ListPokemonsWidget> {
   @override
   Widget build(BuildContext context) {
     double screenHeigth = MediaQuery.of(context).size.height;
@@ -11,66 +22,93 @@ class ListPokemons extends StatelessWidget {
       child: ListView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        children: const <Widget>[
-          CardItemList(
-            nome: 'Squirtle',
-            url:
-                'https://www.seekpng.com/png/full/147-1474793_squirtle-pokemon-squirtle.png',
-          ),
-          CardItemList(
-            nome: 'Charmander',
-            url:
-                'https://capturegobr.files.wordpress.com/2017/02/pokemon-go-getters-charmander.png',
-          ),
-          CardItemList(
-            nome: 'Mewtwo',
-            url:
-                'https://www.pngmart.com/files/13/Mewtwo-Pokemon-Species-PNG-File.png',
-          ),
-          CardItemList(
-            nome: 'Charizard',
-            url:
-                'http://www.pintarcolorir.com.br/wp-content/uploads/2015/04/Desenhos-para-colorir-Charizard-01-172x168.png',
-          ),
-        ],
+        children: getListOfCards(),
       ),
     );
+  }
+
+  getListOfCards() {
+    List<Widget> listCards = [];
+    for (Pokemon pokemon in widget.listPokemons) {
+      listCards.add(
+        CardItemList(
+          nome: pokemon.name,
+          url: pokemon.imgUrl,
+          type: pokemon.type,
+          isFavorite: pokemon.isFavorite,
+        ),
+      );
+    }
+    return listCards;
   }
 }
 
 class CardItemList extends StatelessWidget {
   final String url;
   final String nome;
-  const CardItemList({Key? key, required this.url, required this.nome})
+  final bool isFavorite;
+  final PokemonType type;
+
+  const CardItemList(
+      {Key? key,
+      required this.url,
+      required this.nome,
+      required this.type,
+      this.isFavorite = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-      child: Container(
-        width: MediaQuery.of(context).size.width * .35,
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.white12, width: 0.6),
-            color: const Color.fromARGB(17, 19, 149, 255),
-            borderRadius: BorderRadius.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(nome),
-              Image.network(url, height: 100),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [const Icon(Icons.heart_broken)],
-              )
-            ],
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 13),
+          child: Container(
+            width: MediaQuery.of(context).size.width * .35,
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.white12, width: 0.7),
+                color: const Color.fromARGB(5, 249, 250, 250),
+                borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(nome,
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      TypeLabel(type: type),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: isFavorite ? Colors.red : Colors.white,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
         ),
-      ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: Image.network(
+            url,
+            width: 120,
+            height: 140,
+          ),
+        ),
+      ],
     );
   }
 }
