@@ -1,0 +1,44 @@
+[
+    {"region": "Kanto", "listPokemons" : [
+            {
+                "name": "Squirtle",
+                "type": "Water",
+                "img": "https://www.pngkey.com/png/full/154-1542418_banner-transparent-download-shiny-squirtle-pok-dex-pokemon.png",
+                "favorite": false
+            },
+            {
+                "name": "Charmander",
+                "type": "Fire",
+                "img": "https://static.wikia.nocookie.net/pokemonet/images/8/87/004CharmanderFRLG.png/revision/latest?cb=20130505000902&path-prefix=pt-br",
+                "favorite": true
+            },
+            {
+                "name": "Charizard",
+                "type": "Fire",
+                "img": "http://www.pintarcolorir.com.br/wp-content/uploads/2015/04/Desenhos-para-colorir-Charizard-01-172x168.png",
+                "favorite": false
+            }
+        ]
+    },
+    {"region": "Johto", "listPokemons" : [
+            {
+                "name": "Totodile",
+                "type": "Water",
+                "img": "https://static.wikia.nocookie.net/pokedex/images/e/e7/Totodile.png/revision/latest?cb=20141027203245&path-prefix=pt-br",
+                "favorite": true
+            },
+            {
+                "name": "Croconaw",
+                "type": "Water",
+                "img": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/159.png",
+                "favorite": false
+            },
+            {
+                "name": "Pichu",
+                "type": "Eletric",
+                "img": "https://i.pinimg.com/originals/7d/22/d6/7d22d6f4a9510183539bb571cd9bc85b.png",
+                "favorite": true
+            }
+        ]
+    }
+]

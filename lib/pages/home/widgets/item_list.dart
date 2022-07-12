@@ -3,17 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/pages/home/model/pokemon.dart';
 import 'package:pokedex_flutter/pages/home/widgets/type_label.dart';
 
-class ListPokemonsWidget extends StatefulWidget {
-  final List<Pokemon> listPokemons = [];
-  ListPokemonsWidget({Key? key, required listPokemons}) : super(key: key);
+class ListPokemonsWidget extends StatelessWidget {
+  List<Pokemon> listPokemons = [];
+  ListPokemonsWidget({Key? key, required this.listPokemons}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() {
-    return _ListPokemonsWidgetState();
-  }
-}
-
-class _ListPokemonsWidgetState extends State<ListPokemonsWidget> {
   @override
   Widget build(BuildContext context) {
     double screenHeigth = MediaQuery.of(context).size.height;
@@ -29,7 +22,7 @@ class _ListPokemonsWidgetState extends State<ListPokemonsWidget> {
 
   getListOfCards() {
     List<Widget> listCards = [];
-    for (Pokemon pokemon in widget.listPokemons) {
+    for (Pokemon pokemon in listPokemons) {
       listCards.add(
         CardItemList(
           nome: pokemon.name,

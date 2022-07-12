@@ -6,4 +6,12 @@ class Pokemon {
   const Pokemon(this.name, this.type, this.imgUrl, this.isFavorite);
 }
 
-enum PokemonType { Water, Normal, Fire, Steel, Psychic, Ice, Eletric }
+enum PokemonType {
+  Water,
+  Normal,
+  Fire,
+  Steel,
+  Psychic,
+  Ice,
+  Eletric;
+}
